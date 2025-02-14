@@ -12,6 +12,7 @@ const Letter = () => {
     const [clickCount, setClickCount] = useState(0);
     const [isOpened, setIsOpened] = useState(false);
     const [newText, setNewText] = useState('');
+    const [fade, setFade] = useState(false); // Controls fade effect
 
     useEffect(() => {
         const card = cardRef.current;
@@ -62,16 +63,26 @@ const Letter = () => {
             setClickCount(2);
         } else if (clickCount === 2) {
             setIsOpened(true);
-            setNewText('Thank you for being the love of my life');
-            setClickCount(3);
+            updateText('Thank you for being the love of my life');
+        } else if (clickCount === 3) {
+            updateText('You have shown me so much love and kindness');
+        } else if (clickCount === 4) {
+            updateText('You have made my world shine so bright these past few years');
+        } else if (clickCount === 5) {
+            updateText('I will always love you');
+        } else if (clickCount === 6) {
+            updateText('Love, Kenny');
         }
     };
 
-    useEffect(() => {
-        if (clickCount === 3) {
-            textRef.current.classList.add('show');
-        }
-    }, [clickCount]);
+    const updateText = (text) => {
+        setFade(false); // Hide text before change
+        setTimeout(() => {
+            setNewText(text);
+            setFade(true); // Fade in new text
+            setClickCount((prev) => prev + 1);
+        }, 300); // Wait before changing text
+    };
 
     return (
         <div className="container" ref={containerRef} onClick={handleCardClick}>
@@ -87,7 +98,7 @@ const Letter = () => {
                             Happy<br />Valentine's<br />Day
                         </div>
                         <div
-                            className={`text-second ${clickCount >= 3 ? 'show' : ''}`}
+                            className={`text-second ${fade ? 'show' : ''}`}
                             ref={textRef}
                         >
                             {newText}

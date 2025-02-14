@@ -80,7 +80,7 @@ body {
     line-height: 25px;
     color: #003049;
     opacity: 1;
-    transition: opacity 2s ease-in-out;
+    transition: opacity 1s ease-in-out;
 }
 
 .text-second {
@@ -97,6 +97,23 @@ body {
 }
 
 .text-second.show {
+    opacity: 1;
+}
+
+.text-third {
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    font-family: 'Brush Script MT', cursive;
+    font-size: 28px;
+    text-align: center;
+    line-height: 25px;
+    color: #003049;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.text-third.show {
     opacity: 1;
 }
 
